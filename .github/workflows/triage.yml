@@ -1,0 +1,41 @@
+name: triage
+# The method and every number the page publishes, checked on every change, on GitHub's machines:
+#   · the kernel's tests and the page's (every headline number is recomputed from results/)
+#   · the page runs triage.mjs byte for byte
+#   · witness v0.6 breaks triage.mjs on purpose, one operator at a time; every break must be caught
+#   · the published results are RE-DERIVED: the AIT Alert Data Set is downloaded from Zenodo (checksums verified) and all
+#     eight scenarios are measured again; the build fails if any result differs from the committed one
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with: { node-version: '22' }
+      - name: tests — the kernel, and the page's numbers are the measured ones
+        run: node --test triage.test.mjs page-parity.test.mjs
+      - name: the page holds the gated kernel byte for byte
+        run: node tools/inline.mjs --check
+      - name: witness — every mutant of the kernel must die
+        run: |
+          git clone --depth 1 --branch v0.6 https://github.com/sjgant80-hub/witness.git /tmp/witness
+          node /tmp/witness/witness.mjs mutate triage.mjs --timeout 60000 --cap 100000 --test node --test triage.test.mjs > gate.out 2>&1 || true
+          node -e "const b=require('fs').readFileSync('gate.out','utf8');const j=JSON.parse(b.slice(b.indexOf('{'),b.lastIndexOf('}')+1));if(j.clean!==true||j.killed!==j.total||!(j.total>0)){console.error('::error::witness not clean: '+j.killed+'/'+j.total);process.exit(1)}console.log('witness CLEAN '+j.killed+'/'+j.total)"
+      - name: re-derive every published result from the public data set
+        run: |
+          mkdir -p /tmp/ait && cd /tmp/ait
+          curl -sSL -o ait_ads.zip "https://zenodo.org/records/8263181/files/ait_ads.zip?download=1"
+          curl -sSL -o labels.csv "https://zenodo.org/records/8263181/files/labels.csv?download=1"
+          echo "43db6b1f0996e0024befd617706c50e9  ait_ads.zip" | md5sum -c -
+          echo "60ff33796c77fd2136c4d1a4bc841bd9  labels.csv" | md5sum -c -
+          cd "$GITHUB_WORKSPACE" && cp -r results /tmp/committed
+          node --max-old-space-size=6144 tools/measure.mjs /tmp/ait/ait_ads.zip /tmp/ait/labels.csv russellmitchell fox harrison santos shaw wardbeck wheeler wilson
+          node -e "
+            const fs=require('fs');let bad=0;
+            for(const s of ['russellmitchell','fox','harrison','santos','shaw','wardbeck','wheeler','wilson']){
+              const a=JSON.parse(fs.readFileSync('/tmp/committed/'+s+'.json')),b=JSON.parse(fs.readFileSync('results/'+s+'.json'));
+              for(const o of [a,b]){delete o.seconds;delete o.options;}
+              const same=JSON.stringify(a)===JSON.stringify(b);if(!same)bad++;console.log((same?'ok   ':'DRIFT ')+s);}
+            if(bad){console.error('::error::'+bad+' published result(s) differ from a fresh run');process.exit(1)}
+            console.log('all eight published results re-derived on this runner')"
