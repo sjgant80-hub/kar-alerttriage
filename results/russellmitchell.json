@@ -1,0 +1,243 @@
+{
+ "scenario": "russellmitchell",
+ "data": "AIT-ADS v1 (zenodo 8263181), russellmitchell_wazuh.json",
+ "options": {
+  "burstGap": 300,
+  "incidentGap": 1800,
+  "backgroundShare": 0.25
+ },
+ "alerts": 41488,
+ "unparsable": 0,
+ "attackTimeAlerts": 8537,
+ "phases": [
+  "network_scans",
+  "service_scans",
+  "dirb",
+  "wpscan",
+  "webshell",
+  "cracking",
+  "reverse_shell",
+  "privilege_escalation",
+  "service_stop",
+  "dnsteal"
+ ],
+ "phasesWithAlerts": [
+  "cracking",
+  "dirb",
+  "dnsteal",
+  "network_scans",
+  "privilege_escalation",
+  "service_scans",
+  "webshell",
+  "wpscan"
+ ],
+ "triage": {
+  "groups": 67,
+  "bursts": 9938,
+  "backgroundRules": 8,
+  "reduction": 619.223880597015,
+  "firstAttackRank": 1,
+  "k5": {
+   "precision": 0.4,
+   "phaseRecall": 0.75,
+   "alertRecall": 0.9088672835890829,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "service_scans",
+    "webshell",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.2,
+   "phaseRecall": 0.75,
+   "alertRecall": 0.9088672835890829,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "service_scans",
+    "webshell",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.1,
+   "phaseRecall": 0.75,
+   "alertRecall": 0.9088672835890829,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "service_scans",
+    "webshell",
+    "wpscan"
+   ]
+  },
+  "top10": [
+   {
+    "kind": "incident",
+    "score": 169.278,
+    "alerts": 7753,
+    "attackTime": 7753,
+    "hosts": 10,
+    "rules": [
+     "Multiple web server 400 error codes from same source ip.",
+     "Common web attack.",
+     "Suspicious URL access.",
+     "Apache: Attempt to access forbidden directory index."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 52.594,
+    "alerts": 15,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "sshd: authentication success.",
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "PAM: Login session opened."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 40.29,
+    "alerts": 23,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "Multiple IDS alerts for same id (ignoring now this id).",
+     "SURICATA HTTP gzip decompression failed",
+     "SURICATA HTTP unable to match response to request",
+     "First time this IDS alert is generated."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 39.51,
+    "alerts": 6,
+    "attackTime": 6,
+    "hosts": 1,
+    "rules": [
+     "User successfully changed UID.",
+     "Successful sudo to ROOT executed.",
+     "PAM: Login session opened.",
+     "PAM: Login session closed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 34.662,
+    "alerts": 7,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt.",
+     "First time this IDS alert is generated."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 30.344,
+    "alerts": 8,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Multiple IDS alerts for same id (ignoring now this id).",
+     "ET INFO Observed DNS Query to .cloud TLD",
+     "First time this IDS alert is generated."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 26.315,
+    "alerts": 5,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "sshd: authentication success.",
+     "PAM: Login session opened.",
+     "PAM: Login session closed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 26.315,
+    "alerts": 9,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "sshd: authentication success.",
+     "PAM: Login session opened.",
+     "PAM: Login session closed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 26.28,
+    "alerts": 6,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 26.28,
+    "alerts": 6,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   }
+  ]
+ },
+ "baseline": {
+  "groups": 38,
+  "reduction": 1091.7894736842106,
+  "firstAttackRank": 2,
+  "k5": {
+   "precision": 0.2,
+   "phaseRecall": 0.375,
+   "alertRecall": 0.06489399086330093,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.4,
+   "phaseRecall": 0.375,
+   "alertRecall": 0.09148412791378704,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.4,
+   "phaseRecall": 0.375,
+   "alertRecall": 0.9914489867635,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  }
+ },
+ "seconds": 1
+}
