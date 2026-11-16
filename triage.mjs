@@ -10,7 +10,9 @@
 //   5. score       each group: the sum, over its distinct rules, of rarity × (1 + severity), where
 //                  rarity = ln(all bursts / bursts of that rule) and severity = level / 15 (Wazuh's 0–15 scale)
 
-export const DEFAULTS = Object.freeze({ burstGap: 300, incidentGap: 1800, backgroundShare: 0.25 });
+// backgroundMinHours: "fires in a quarter of the hours" only means routine over a long enough export; on a short one
+// (a few hours of an attack) every rule would qualify, so below this span nothing is set aside and rarity alone ranks.
+export const DEFAULTS = Object.freeze({ burstGap: 300, incidentGap: 1800, backgroundShare: 0.25, backgroundMinHours: 24 });
 const MAX_LEVEL = 15;
 
 const isObj = (x) => x !== null && typeof x === 'object' && !Array.isArray(x);
@@ -138,7 +140,7 @@ export function triage(rawAlerts, options) {
   for (const a of alerts) { const h = Math.floor(a.t / 3600); const s = ruleHours.get(a.rule) || new Set(); s.add(h); ruleHours.set(a.rule, s); }
   for (const b of bs) ruleBursts.set(b.rule, (ruleBursts.get(b.rule) || 0) + 1);
   const background = new Set();
-  for (const [rule, hs] of ruleHours) if (hours > 1 && hs.size / hours >= o.backgroundShare) background.add(rule);
+  for (const [rule, hs] of ruleHours) if (hours >= o.backgroundMinHours && hs.size / hours >= o.backgroundShare) background.add(rule);
   const rarity = (rule) => Math.log(bs.length / ruleBursts.get(rule));
 
   // incidents: link non-background bursts that share a host or an address within incidentGap

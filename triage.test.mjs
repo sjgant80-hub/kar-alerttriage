@@ -61,18 +61,22 @@ test('background: a rule in at least a quarter of the hours is set aside, one gr
   const alerts = [];
   for (let h = 0; h < 8; h++) alerts.push(row(h * 3600, 'noise', 'mail', 3));
   alerts.push(row(3 * 3600 + 10, 'rare', 'web', 10), row(3 * 3600 + 20, 'rare2', 'web', 10));
-  const r = triage(alerts);
+  assert.equal(triage(alerts).stats.background, 0, 'eight hours is shorter than the 24 an export needs before anything is routine');
+  const r = triage(alerts, { backgroundMinHours: 8 });
   assert.equal(r.stats.hours, 8);
-  assert.equal(r.stats.background, 1);
+  assert.equal(r.stats.background, 1, 'exactly the minimum span is long enough');
+  assert.equal(triage(alerts, { backgroundMinHours: 9 }).stats.background, 0);
   const bg = r.groups.find((g) => g.kind === 'background');
   assert.equal(bg.alerts, 8); assert.equal(bg.bursts, 8); assert.deepEqual(bg.rules.map((x) => x.rule), ['noise']);
   const inc = r.groups.find((g) => g.kind === 'incident');
   assert.deepEqual(inc.rules.map((x) => x.rule).sort(), ['rare', 'rare2']);
   assert.equal(r.groups[0].kind, 'incident', 'the rare incident outranks the noise');
   const quarter = []; for (let h = 0; h < 4; h++) quarter.push(row(h * 3600, h === 0 ? 'once' : 'x' + h, 'h' + h));
-  assert.equal(triage(quarter).stats.background, 4, 'exactly a quarter of the hours counts as background');
-  assert.equal(triage(quarter, { backgroundShare: 0.26 }).stats.background, 0);
-  assert.equal(triage([row(0, 'a', 'h'), row(10, 'b', 'h')]).stats.background, 0, 'one hour of export has no background');
+  assert.equal(triage(quarter, { backgroundMinHours: 1 }).stats.background, 4, 'exactly a quarter of the hours counts as background');
+  assert.equal(triage(quarter, { backgroundMinHours: 1, backgroundShare: 0.26 }).stats.background, 0);
+  assert.equal(triage([row(0, 'a', 'h'), row(10, 'b', 'h')], { backgroundMinHours: 2 }).stats.background, 0, 'one hour is under a two-hour minimum');
+  const day = []; for (let h = 0; h < 24; h++) day.push(row(h * 3600, 'hourly', 'mail'));
+  assert.equal(triage(day).stats.background, 1, 'a full day with the default minimum sets routine noise aside');
 });
 
 test('incidents link by host or by address within the gap, and not beyond it', () => {
@@ -135,7 +139,7 @@ test('refusals, options and garbage', () => {
   assert.equal(triage([row(0, 'a', 'h'), row(400, 'a', 'h')], null).stats.bursts, 2);
   assert.equal(triage([row(0, 'a', 'h'), row(400, 'a', 'h')], { burstGap: 0 }).stats.bursts, 2, 'zero is a valid option');
   assert.equal(triage([row(5, 'b', 'h'), row(5, 'a', 'h'), { junk: 1 }]).stats.skipped, 1);
-  assert.deepEqual(DEFAULTS, { burstGap: 300, incidentGap: 1800, backgroundShare: 0.25 });
+  assert.deepEqual(DEFAULTS, { burstGap: 300, incidentGap: 1800, backgroundShare: 0.25, backgroundMinHours: 24 });
   assert.ok(Object.isFrozen(DEFAULTS));
   const big = []; for (let i = 0; i < 200000; i++) big.push(row(i, 'flood', 'h', 1)); for (let h = 0; h < 60; h++) big.push(row(h * 3600, 'noise' + (h % 2), 'h2'));
   assert.equal(triage(big).ok, true, 'a large group does not overflow the stack');
