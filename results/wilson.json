@@ -1,0 +1,246 @@
+{
+ "scenario": "wilson",
+ "data": "AIT-ADS v1 (zenodo 8263181), wilson_wazuh.json",
+ "options": {
+  "burstGap": 300,
+  "incidentGap": 1800,
+  "backgroundShare": 0.25
+ },
+ "alerts": 625303,
+ "unparsable": 0,
+ "attackTimeAlerts": 432182,
+ "phases": [
+  "network_scans",
+  "service_scans",
+  "wpscan",
+  "dirb",
+  "webshell",
+  "cracking",
+  "reverse_shell",
+  "privilege_escalation",
+  "service_stop",
+  "dnsteal"
+ ],
+ "phasesWithAlerts": [
+  "cracking",
+  "dirb",
+  "dnsteal",
+  "network_scans",
+  "privilege_escalation",
+  "reverse_shell",
+  "service_scans",
+  "webshell",
+  "wpscan"
+ ],
+ "triage": {
+  "groups": 131,
+  "bursts": 40148,
+  "backgroundRules": 11,
+  "reduction": 4773.305343511451,
+  "firstAttackRank": 1,
+  "k5": {
+   "precision": 0.2,
+   "phaseRecall": 0.5555555555555556,
+   "alertRecall": 0.9880467025466123,
+   "phasesFound": [
+    "dirb",
+    "privilege_escalation",
+    "reverse_shell",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.1,
+   "phaseRecall": 0.5555555555555556,
+   "alertRecall": 0.9880467025466123,
+   "phasesFound": [
+    "dirb",
+    "privilege_escalation",
+    "reverse_shell",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.05,
+   "phaseRecall": 0.5555555555555556,
+   "alertRecall": 0.9880467025466123,
+   "phasesFound": [
+    "dirb",
+    "privilege_escalation",
+    "reverse_shell",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "top10": [
+   {
+    "kind": "incident",
+    "score": 260.969,
+    "alerts": 427031,
+    "attackTime": 427016,
+    "hosts": 9,
+    "rules": [
+     "Multiple web server 400 error codes from same source ip.",
+     "CMS (WordPress or Joomla) brute force attempt.",
+     "Common web attack.",
+     "Suspicious URL access."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 80.985,
+    "alerts": 15,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "ET INFO Observed DNS Query to .biz TLD",
+     "First time user executed sudo.",
+     "syslog: User authentication failure.",
+     "PAM: User login failed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 51.026,
+    "alerts": 136,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "PAM: Multiple failed logins in a small period of time.",
+     "Dovecot brute force attack (multiple auth failures).",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 48.367,
+    "alerts": 11,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "Successful sudo to ROOT executed.",
+     "PAM: Login session opened.",
+     "sshd: authentication success.",
+     "PAM: Login session closed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 46.249,
+    "alerts": 24,
+    "attackTime": 0,
+    "hosts": 3,
+    "rules": [
+     "PAM: Login session opened.",
+     "sshd: authentication success.",
+     "PAM: Login session closed.",
+     "Web server 400 error code."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 44.398,
+    "alerts": 6,
+    "attackTime": 0,
+    "hosts": 3,
+    "rules": [
+     "SURICATA DNS Unsolicited response",
+     "ET INFO Session Traversal Utilities for NAT (STUN Binding Response)",
+     "ET INFO Session Traversal Utilities for NAT (STUN Binding Request)",
+     "ET INFO Observed DNS Query to .cloud TLD"
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 40.249,
+    "alerts": 11,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "First time user executed sudo.",
+     "PAM: Login session opened.",
+     "sshd: authentication success.",
+     "PAM: Login session closed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 40.249,
+    "alerts": 8,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "First time user executed sudo.",
+     "PAM: Login session opened.",
+     "sshd: authentication success.",
+     "PAM: Login session closed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 39.98,
+    "alerts": 7,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Successful sudo to ROOT executed.",
+     "PAM: Login session opened.",
+     "sshd: authentication success.",
+     "PAM: Login session closed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 39.787,
+    "alerts": 78,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "SURICATA HTTP gzip decompression failed",
+     "SURICATA HTTP invalid response chunk len",
+     "SURICATA HTTP unable to match response to request",
+     "ET INFO Observed DNS Query to .cloud TLD"
+    ]
+   }
+  ]
+ },
+ "baseline": {
+  "groups": 52,
+  "reduction": 12025.057692307691,
+  "firstAttackRank": 3,
+  "k5": {
+   "precision": 0.2,
+   "phaseRecall": 0.3333333333333333,
+   "alertRecall": 0.07083358399933361,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.2,
+   "phaseRecall": 0.3333333333333333,
+   "alertRecall": 0.07460745704356035,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.45,
+   "phaseRecall": 0.3333333333333333,
+   "alertRecall": 0.9918622247108857,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  }
+ },
+ "seconds": 17
+}

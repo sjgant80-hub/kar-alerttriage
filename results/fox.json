@@ -1,0 +1,245 @@
+{
+ "scenario": "fox",
+ "data": "AIT-ADS v1 (zenodo 8263181), fox_wazuh.json",
+ "options": {
+  "burstGap": 300,
+  "incidentGap": 1800,
+  "backgroundShare": 0.25
+ },
+ "alerts": 462523,
+ "unparsable": 0,
+ "attackTimeAlerts": 412240,
+ "phases": [
+  "network_scans",
+  "service_scans",
+  "wpscan",
+  "dirb",
+  "webshell",
+  "cracking",
+  "reverse_shell",
+  "privilege_escalation",
+  "service_stop",
+  "dnsteal"
+ ],
+ "phasesWithAlerts": [
+  "cracking",
+  "dirb",
+  "dnsteal",
+  "network_scans",
+  "privilege_escalation",
+  "service_scans",
+  "wpscan"
+ ],
+ "triage": {
+  "groups": 134,
+  "bursts": 14011,
+  "backgroundRules": 7,
+  "reduction": 3451.6641791044776,
+  "firstAttackRank": 1,
+  "k5": {
+   "precision": 0.4,
+   "phaseRecall": 0.7142857142857143,
+   "alertRecall": 0.9962982728507666,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.2,
+   "phaseRecall": 0.7142857142857143,
+   "alertRecall": 0.9962982728507666,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.15,
+   "phaseRecall": 0.8571428571428571,
+   "alertRecall": 0.9963031243935572,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "dnsteal",
+    "privilege_escalation",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "top10": [
+   {
+    "kind": "incident",
+    "score": 152.399,
+    "alerts": 410704,
+    "attackTime": 410704,
+    "hosts": 8,
+    "rules": [
+     "Multiple web server 400 error codes from same source ip.",
+     "Common web attack.",
+     "Suspicious URL access.",
+     "Apache: Attempt to access forbidden directory index."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 56.591,
+    "alerts": 13,
+    "attackTime": 0,
+    "hosts": 3,
+    "rules": [
+     "Multiple IDS alerts for same id (ignoring now this id).",
+     "First time user executed sudo.",
+     "sshd: authentication success.",
+     "PAM: Login session opened."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 49.715,
+    "alerts": 91,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Dovecot brute force attack (multiple auth failures).",
+     "PAM: Multiple failed logins in a small period of time.",
+     "syslog: User authentication failure.",
+     "PAM: User login failed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 48.444,
+    "alerts": 20,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "First time user executed sudo.",
+     "Successful sudo to ROOT executed.",
+     "sshd: authentication success.",
+     "PAM: Login session opened."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 47.14,
+    "alerts": 11,
+    "attackTime": 10,
+    "hosts": 1,
+    "rules": [
+     "User successfully changed UID.",
+     "Successful sudo to ROOT executed.",
+     "PAM: Login session opened.",
+     "PAM: Login session closed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 41.044,
+    "alerts": 54,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Dovecot brute force attack (multiple auth failures).",
+     "PAM: Multiple failed logins in a small period of time.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 41.044,
+    "alerts": 56,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Dovecot brute force attack (multiple auth failures).",
+     "PAM: Multiple failed logins in a small period of time.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 41.044,
+    "alerts": 103,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Dovecot brute force attack (multiple auth failures).",
+     "PAM: Multiple failed logins in a small period of time.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 36.783,
+    "alerts": 10,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "Multiple IDS alerts for same id (ignoring now this id).",
+     "SURICATA HTTP unable to match response to request",
+     "First time this IDS alert is generated.",
+     "ET INFO Observed DNS Query to .cloud TLD"
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 36.497,
+    "alerts": 11,
+    "attackTime": 0,
+    "hosts": 3,
+    "rules": [
+     "ET INFO DNS Query for Suspicious .ga Domain",
+     "ET INFO Suspicious Domain (*.ga) in TLS SNI",
+     "First time this IDS alert is generated.",
+     "CMS (WordPress or Joomla) login attempt."
+    ]
+   }
+  ]
+ },
+ "baseline": {
+  "groups": 43,
+  "reduction": 10756.348837209302,
+  "firstAttackRank": 2,
+  "k5": {
+   "precision": 0.2,
+   "phaseRecall": 0.42857142857142855,
+   "alertRecall": 0.07106297302542208,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.3,
+   "phaseRecall": 0.42857142857142855,
+   "alertRecall": 0.07343295167863381,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.35,
+   "phaseRecall": 0.42857142857142855,
+   "alertRecall": 0.9990927614981564,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  }
+ },
+ "seconds": 12
+}

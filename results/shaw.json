@@ -1,0 +1,241 @@
+{
+ "scenario": "shaw",
+ "data": "AIT-ADS v1 (zenodo 8263181), shaw_wazuh.json",
+ "options": {
+  "burstGap": 300,
+  "incidentGap": 1800,
+  "backgroundShare": 0.25
+ },
+ "alerts": 68539,
+ "unparsable": 0,
+ "attackTimeAlerts": 5966,
+ "phases": [
+  "network_scans",
+  "service_scans",
+  "wpscan",
+  "dirb",
+  "webshell",
+  "cracking",
+  "reverse_shell",
+  "privilege_escalation",
+  "service_stop",
+  "dnsteal"
+ ],
+ "phasesWithAlerts": [
+  "cracking",
+  "dirb",
+  "dnsteal",
+  "network_scans",
+  "privilege_escalation",
+  "reverse_shell",
+  "service_scans",
+  "wpscan"
+ ],
+ "triage": {
+  "groups": 122,
+  "bursts": 19243,
+  "backgroundRules": 8,
+  "reduction": 561.7950819672132,
+  "firstAttackRank": 1,
+  "k5": {
+   "precision": 0.4,
+   "phaseRecall": 0.5,
+   "alertRecall": 0.8714381495139122,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.2,
+   "phaseRecall": 0.5,
+   "alertRecall": 0.8714381495139122,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.1,
+   "phaseRecall": 0.5,
+   "alertRecall": 0.8714381495139122,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "wpscan"
+   ]
+  },
+  "top10": [
+   {
+    "kind": "incident",
+    "score": 91.434,
+    "alerts": 5189,
+    "attackTime": 5189,
+    "hosts": 2,
+    "rules": [
+     "Multiple web server 400 error codes from same source ip.",
+     "Common web attack.",
+     "Suspicious URL access.",
+     "Apache: Attempt to access forbidden file or directory."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 56.52,
+    "alerts": 10,
+    "attackTime": 10,
+    "hosts": 1,
+    "rules": [
+     "First time user executed sudo.",
+     "User successfully changed UID.",
+     "Successful sudo to ROOT executed.",
+     "PAM: Login session opened."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 55.292,
+    "alerts": 14,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Multiple IDS events from same source ip (ignoring now this srcip and id).",
+     "Multiple IDS alerts for same id (ignoring now this id).",
+     "ET DNS Query for .to TLD",
+     "First time this IDS alert is generated."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 51.647,
+    "alerts": 191,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Dovecot brute force attack (multiple auth failures).",
+     "PAM: Multiple failed logins in a small period of time.",
+     "syslog: User authentication failure.",
+     "PAM: User login failed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 42.786,
+    "alerts": 34,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Dovecot brute force attack (multiple auth failures).",
+     "PAM: Multiple failed logins in a small period of time.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 42.786,
+    "alerts": 76,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Dovecot brute force attack (multiple auth failures).",
+     "PAM: Multiple failed logins in a small period of time.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 41.683,
+    "alerts": 5,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Multiple IDS alerts for same id (ignoring now this id).",
+     "ET INFO DNS Query for Suspicious .ga Domain",
+     "ET INFO Suspicious Domain (*.ga) in TLS SNI",
+     "First time this IDS alert is generated."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 39.043,
+    "alerts": 30,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Dovecot brute force attack (multiple auth failures).",
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 38.236,
+    "alerts": 7,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "ET INFO DNS Query for Suspicious .ga Domain",
+     "ET INFO Suspicious Domain (*.ga) in TLS SNI",
+     "First time this IDS alert is generated.",
+     "ET INFO Observed DNS Query to .cloud TLD"
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 34.155,
+    "alerts": 5,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Multiple IDS events from same source ip (ignoring now this srcip and id).",
+     "Multiple IDS alerts for same id (ignoring now this id).",
+     "ET INFO Observed DNS Query to .cloud TLD"
+    ]
+   }
+  ]
+ },
+ "baseline": {
+  "groups": 39,
+  "reduction": 1757.4102564102564,
+  "firstAttackRank": 3,
+  "k5": {
+   "precision": 0.2,
+   "phaseRecall": 0.25,
+   "alertRecall": 0.06218571907475696,
+   "phasesFound": [
+    "dirb",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.2,
+   "phaseRecall": 0.25,
+   "alertRecall": 0.09788803218236675,
+   "phasesFound": [
+    "dirb",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.45,
+   "phaseRecall": 0.625,
+   "alertRecall": 0.9044585987261147,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "service_scans",
+    "wpscan"
+   ]
+  }
+ },
+ "seconds": 3
+}

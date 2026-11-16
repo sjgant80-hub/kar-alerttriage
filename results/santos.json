@@ -1,0 +1,245 @@
+{
+ "scenario": "santos",
+ "data": "AIT-ADS v1 (zenodo 8263181), santos_wazuh.json",
+ "options": {
+  "burstGap": 300,
+  "incidentGap": 1800,
+  "backgroundShare": 0.25
+ },
+ "alerts": 126513,
+ "unparsable": 0,
+ "attackTimeAlerts": 9569,
+ "phases": [
+  "network_scans",
+  "service_scans",
+  "dirb",
+  "wpscan",
+  "webshell",
+  "cracking",
+  "reverse_shell",
+  "privilege_escalation",
+  "service_stop",
+  "dnsteal"
+ ],
+ "phasesWithAlerts": [
+  "cracking",
+  "dirb",
+  "dnsteal",
+  "network_scans",
+  "privilege_escalation",
+  "reverse_shell",
+  "service_scans",
+  "webshell",
+  "wpscan"
+ ],
+ "triage": {
+  "groups": 60,
+  "bursts": 19686,
+  "backgroundRules": 14,
+  "reduction": 2108.55,
+  "firstAttackRank": 1,
+  "k5": {
+   "precision": 0.4,
+   "phaseRecall": 0.7777777777777778,
+   "alertRecall": 0.8133556275472881,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "reverse_shell",
+    "service_scans",
+    "webshell",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.2,
+   "phaseRecall": 0.7777777777777778,
+   "alertRecall": 0.8133556275472881,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "reverse_shell",
+    "service_scans",
+    "webshell",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.1,
+   "phaseRecall": 0.7777777777777778,
+   "alertRecall": 0.8133556275472881,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "reverse_shell",
+    "service_scans",
+    "webshell",
+    "wpscan"
+   ]
+  },
+  "top10": [
+   {
+    "kind": "incident",
+    "score": 176.706,
+    "alerts": 7772,
+    "attackTime": 7772,
+    "hosts": 7,
+    "rules": [
+     "Multiple web server 400 error codes from same source ip.",
+     "Common web attack.",
+     "Suspicious URL access.",
+     "Apache: Attempt to access forbidden file or directory."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 56.957,
+    "alerts": 10,
+    "attackTime": 10,
+    "hosts": 1,
+    "rules": [
+     "User successfully changed UID.",
+     "Successful sudo to ROOT executed.",
+     "First time user executed sudo.",
+     "PAM: Login session opened."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 53.79,
+    "alerts": 12,
+    "attackTime": 1,
+    "hosts": 2,
+    "rules": [
+     "sshd: authentication success.",
+     "First time user executed sudo.",
+     "PAM: Login session opened.",
+     "PAM: Login session closed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 49.837,
+    "alerts": 13,
+    "attackTime": 0,
+    "hosts": 3,
+    "rules": [
+     "Multiple IDS events from same source ip (ignoring now this srcip and id).",
+     "SURICATA TLS certificate invalid der",
+     "SURICATA HTTP unable to match response to request",
+     "CMS (WordPress or Joomla) login attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 35.601,
+    "alerts": 5,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Multiple IDS events from same source ip (ignoring now this srcip and id).",
+     "ET INFO DNS Query for Suspicious .ga Domain",
+     "ET INFO Suspicious Domain (*.ga) in TLS SNI"
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 30.854,
+    "alerts": 8,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "SURICATA HTTP gzip decompression failed",
+     "SURICATA HTTP invalid response chunk len",
+     "SURICATA HTTP unable to match response to request"
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 29.096,
+    "alerts": 4,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "ET HUNTING Suspicious Domain Request for Possible COVID-19 Domain M1",
+     "ET HUNTING Suspicious TLS SNI Request for Possible COVID-19 Domain M1",
+     "ET INFO Observed DNS Query to .cloud TLD"
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 28.946,
+    "alerts": 45,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "ET HUNTING Suspicious Domain Request for Possible COVID-19 Domain M1",
+     "ET HUNTING Suspicious TLS SNI Request for Possible COVID-19 Domain M1",
+     "ET HUNTING Possible COVID-19 Domain in SSL Certificate M2"
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 28.946,
+    "alerts": 47,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "ET HUNTING Suspicious Domain Request for Possible COVID-19 Domain M1",
+     "ET HUNTING Suspicious TLS SNI Request for Possible COVID-19 Domain M1",
+     "ET HUNTING Possible COVID-19 Domain in SSL Certificate M2"
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 24.568,
+    "alerts": 13,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Multiple IDS events from same source ip (ignoring now this srcip and id).",
+     "ET DNS Query for .cc TLD"
+    ]
+   }
+  ]
+ },
+ "baseline": {
+  "groups": 50,
+  "reduction": 2530.26,
+  "firstAttackRank": 4,
+  "k5": {
+   "precision": 0.2,
+   "phaseRecall": 0.3333333333333333,
+   "alertRecall": 0.0592538405267008,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.3,
+   "phaseRecall": 0.3333333333333333,
+   "alertRecall": 0.10272755773853068,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.35,
+   "phaseRecall": 0.3333333333333333,
+   "alertRecall": 0.9539136795903438,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  }
+ },
+ "seconds": 4
+}

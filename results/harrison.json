@@ -1,0 +1,241 @@
+{
+ "scenario": "harrison",
+ "data": "AIT-ADS v1 (zenodo 8263181), harrison_wazuh.json",
+ "options": {
+  "burstGap": 300,
+  "incidentGap": 1800,
+  "backgroundShare": 0.25
+ },
+ "alerts": 583754,
+ "unparsable": 0,
+ "attackTimeAlerts": 421980,
+ "phases": [
+  "network_scans",
+  "service_scans",
+  "wpscan",
+  "dirb",
+  "webshell",
+  "cracking",
+  "reverse_shell",
+  "privilege_escalation",
+  "service_stop",
+  "dnsteal"
+ ],
+ "phasesWithAlerts": [
+  "cracking",
+  "dirb",
+  "dnsteal",
+  "network_scans",
+  "privilege_escalation",
+  "reverse_shell",
+  "service_scans",
+  "service_stop",
+  "webshell",
+  "wpscan"
+ ],
+ "triage": {
+  "groups": 90,
+  "bursts": 20144,
+  "backgroundRules": 11,
+  "reduction": 6486.155555555555,
+  "firstAttackRank": 1,
+  "k5": {
+   "precision": 0.4,
+   "phaseRecall": 0.5,
+   "alertRecall": 0.9845466609791933,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.2,
+   "phaseRecall": 0.5,
+   "alertRecall": 0.9845466609791933,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.1,
+   "phaseRecall": 0.5,
+   "alertRecall": 0.9845466609791933,
+   "phasesFound": [
+    "cracking",
+    "dirb",
+    "privilege_escalation",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "top10": [
+   {
+    "kind": "incident",
+    "score": 185.314,
+    "alerts": 415497,
+    "attackTime": 415446,
+    "hosts": 6,
+    "rules": [
+     "Multiple web server 400 error codes from same source ip.",
+     "Common web attack.",
+     "Suspicious URL access.",
+     "Apache: Attempt to access forbidden directory index."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 60.125,
+    "alerts": 13,
+    "attackTime": 13,
+    "hosts": 1,
+    "rules": [
+     "First time user executed sudo.",
+     "User successfully changed UID.",
+     "Successful sudo to ROOT executed.",
+     "PAM: Login session opened."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 50.578,
+    "alerts": 46,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "PAM: Multiple failed logins in a small period of time.",
+     "Dovecot brute force attack (multiple auth failures).",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 37.278,
+    "alerts": 22,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "ET INFO DNS Query for Suspicious .ga Domain",
+     "ET INFO Suspicious Domain (*.ga) in TLS SNI",
+     "ET INFO Observed DNS Query to .cloud TLD",
+     "ET POLICY GNU/Linux APT User-Agent Outbound likely related to package management"
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 34.943,
+    "alerts": 258,
+    "attackTime": 0,
+    "hosts": 5,
+    "rules": [
+     "Auditd: SELinux permission check.",
+     "SURICATA HTTP unable to match response to request",
+     "ET INFO Observed DNS Query to .cloud TLD",
+     "ET POLICY GNU/Linux APT User-Agent Outbound likely related to package management"
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 28.262,
+    "alerts": 16,
+    "attackTime": 0,
+    "hosts": 2,
+    "rules": [
+     "SURICATA HTTP invalid response chunk len",
+     "SURICATA HTTP gzip decompression failed",
+     "ET POLICY GNU/Linux APT User-Agent Outbound likely related to package management"
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 26.413,
+    "alerts": 12,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 26.413,
+    "alerts": 6,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 26.413,
+    "alerts": 6,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 26.413,
+    "alerts": 6,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   }
+  ]
+ },
+ "baseline": {
+  "groups": 44,
+  "reduction": 13267.136363636364,
+  "firstAttackRank": 3,
+  "k5": {
+   "precision": 0.2,
+   "phaseRecall": 0.2,
+   "alertRecall": 0.07033271719038817,
+   "phasesFound": [
+    "dirb",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.2,
+   "phaseRecall": 0.2,
+   "alertRecall": 0.07663396369496185,
+   "phasesFound": [
+    "dirb",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.45,
+   "phaseRecall": 0.4,
+   "alertRecall": 0.989812313379781,
+   "phasesFound": [
+    "dirb",
+    "privilege_escalation",
+    "service_scans",
+    "wpscan"
+   ]
+  }
+ },
+ "seconds": 15
+}

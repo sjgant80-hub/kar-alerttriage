@@ -1,0 +1,239 @@
+{
+ "scenario": "wheeler",
+ "data": "AIT-ADS v1 (zenodo 8263181), wheeler_wazuh.json",
+ "options": {
+  "burstGap": 300,
+  "incidentGap": 1800,
+  "backgroundShare": 0.25
+ },
+ "alerts": 603939,
+ "unparsable": 0,
+ "attackTimeAlerts": 420981,
+ "phases": [
+  "network_scans",
+  "service_scans",
+  "wpscan",
+  "dirb",
+  "webshell",
+  "reverse_shell",
+  "privilege_escalation",
+  "service_stop",
+  "dnsteal"
+ ],
+ "phasesWithAlerts": [
+  "dirb",
+  "dnsteal",
+  "network_scans",
+  "privilege_escalation",
+  "reverse_shell",
+  "service_scans",
+  "webshell",
+  "wpscan"
+ ],
+ "triage": {
+  "groups": 104,
+  "bursts": 36922,
+  "backgroundRules": 11,
+  "reduction": 5807.1057692307695,
+  "firstAttackRank": 1,
+  "k5": {
+   "precision": 0.4,
+   "phaseRecall": 0.625,
+   "alertRecall": 0.9962492369014279,
+   "phasesFound": [
+    "dirb",
+    "privilege_escalation",
+    "reverse_shell",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.2,
+   "phaseRecall": 0.625,
+   "alertRecall": 0.9962492369014279,
+   "phasesFound": [
+    "dirb",
+    "privilege_escalation",
+    "reverse_shell",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.1,
+   "phaseRecall": 0.625,
+   "alertRecall": 0.9962492369014279,
+   "phasesFound": [
+    "dirb",
+    "privilege_escalation",
+    "reverse_shell",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "top10": [
+   {
+    "kind": "incident",
+    "score": 198.786,
+    "alerts": 419403,
+    "attackTime": 419393,
+    "hosts": 8,
+    "rules": [
+     "CMS (WordPress or Joomla) brute force attempt.",
+     "Multiple web server 400 error codes from same source ip.",
+     "Common web attack.",
+     "Suspicious URL access."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 62.969,
+    "alerts": 9,
+    "attackTime": 9,
+    "hosts": 1,
+    "rules": [
+     "First time user executed sudo.",
+     "User successfully changed UID.",
+     "Successful sudo to ROOT executed.",
+     "PAM: Login session closed."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 53.234,
+    "alerts": 110,
+    "attackTime": 0,
+    "hosts": 5,
+    "rules": [
+     "sshd: authentication success.",
+     "CMS (WordPress or Joomla) login attempt.",
+     "PAM: Login session opened.",
+     "Auditd: SELinux permission check."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 52.016,
+    "alerts": 8,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "ET INFO TLS Handshake Failure",
+     "SURICATA HTTP unable to match response to request",
+     "SURICATA HTTP gzip decompression failed",
+     "ET DNS Query for .to TLD"
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 51.089,
+    "alerts": 119,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "Dovecot brute force attack (multiple auth failures).",
+     "PAM: Multiple failed logins in a small period of time.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 27.787,
+    "alerts": 6,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 27.787,
+    "alerts": 12,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 27.787,
+    "alerts": 6,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 27.787,
+    "alerts": 6,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   },
+   {
+    "kind": "incident",
+    "score": 27.787,
+    "alerts": 12,
+    "attackTime": 0,
+    "hosts": 1,
+    "rules": [
+     "syslog: User authentication failure.",
+     "PAM: User login failed.",
+     "Dovecot Invalid User Login Attempt."
+    ]
+   }
+  ]
+ },
+ "baseline": {
+  "groups": 44,
+  "reduction": 13725.886363636364,
+  "firstAttackRank": 3,
+  "k5": {
+   "precision": 0.2,
+   "phaseRecall": 0.375,
+   "alertRecall": 0.07248545658830209,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k10": {
+   "precision": 0.2,
+   "phaseRecall": 0.375,
+   "alertRecall": 0.07410548219515845,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  },
+  "k20": {
+   "precision": 0.45,
+   "phaseRecall": 0.375,
+   "alertRecall": 0.9977481168983874,
+   "phasesFound": [
+    "dirb",
+    "service_scans",
+    "wpscan"
+   ]
+  }
+ },
+ "seconds": 18
+}
