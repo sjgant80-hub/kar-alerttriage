@@ -31,15 +31,17 @@ test('every headline number is the measured one', () => {
   const total = R.reduce((s, r) => s + r.alerts, 0);
   assert.ok(text.includes(total.toLocaleString('en-GB') + ' real alerts it was measured on'), 'total alerts ' + total);
   const firsts = R.filter((r) => r.triage.firstAttackRank === 1).length;
-  assert.ok(text.includes(firsts + ' of 8 attacks ranked first'), 'attacks ranked first: ' + firsts);
+  assert.ok(text.includes(firsts + ' of 8 scenarios with an attack incident as the first group'), 'attack first: ' + firsts);
   assert.ok(text.includes(range(R.map((r) => pct(r.triage.k10.alertRecall))) + ' of attack-time alerts in the top 10'), 'triage alert recall ' + range(R.map((r) => pct(r.triage.k10.alertRecall))));
-  assert.ok(text.includes(range(R.map((r) => pct(r.baseline.k10.alertRecall))) + ' the same for a severity-sorted queue'), 'baseline alert recall');
+  assert.ok(text.includes(range(R.map((r) => pct(r.baseline.k10.alertRecall))) + ' by the same measure for a severity-sorted queue'), 'baseline alert recall');
   const b = R.map((r) => r.baseline.firstAttackRank);
   assert.ok(text.includes('rank ' + Math.min(...b) + ' to ' + Math.max(...b) + ' for the severity queue'));
   assert.ok(text.includes('(' + range(R.map((r) => pct(r.triage.k10.precision))) + ', against ' + range(R.map((r) => pct(r.baseline.k10.precision))) + ')'), 'the loss is stated with its numbers');
   assert.ok(R.every((r) => r.triage.k10.phaseRecall > r.baseline.k10.phaseRecall), 'the page says it finds more phases in all eight');
   assert.ok(R.every((r) => !r.triage.k10.phasesFound.includes('dnsteal')) && text.includes('DNS exfiltration is missed in all eight scenarios'));
   assert.ok(R.every((r) => !r.triage.k10.phasesFound.includes('network_scans')) && text.includes('first network scans'));
+  const w = R.find((r) => r.scenario === 'wilson');
+  assert.ok(text.includes(w.alerts.toLocaleString('en-GB') + ' alerts from a 674 MB file, in ' + w.seconds + ' seconds'), 'the large-export timing is the measured one');
 });
 
 test('the pre-registration is stated and the demo is the credited data', () => {
