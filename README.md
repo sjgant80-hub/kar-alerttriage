@@ -26,7 +26,7 @@ On the public [AIT Alert Data Set](https://zenodo.org/records/8263181) (CC BY 4.
 - **The first group is an attack in all 8 scenarios**, against rank 2–4 for a severity-sorted queue.
 - **The top 10 groups hold 81–100% of attack-time alerts**, against 7–10%.
 - **It loses on "top 10 that are attack"** (10–20%, against 20–50%), because one attack becomes one incident.
-- **It misses DNS exfiltration in every scenario** (whose traces in this data are mainly AMiner alerts, which v1 does not read), and the first network scans.
+- **It misses DNS exfiltration in every scenario**, and the first network scans. The data set's paper says an alert flags the exfiltration while it runs in only two scenarios: in harrison and santos, Suricata marks the attacker's .biz domain. v1 reads those alerts and still ranks them below its top 10. In the other six, the traces are AMiner alerts raised after the exfiltration stops, outside the labelled attack time. (Corrected 2026-11-17. This line used to say the traces were "mainly AMiner alerts, which v1 does not read".)
 
 Labels are by time (an alert inside an attack window counts as attack-time). Every number is in `results/`, and CI re-derives all of them from the Zenodo download on every change.
 
