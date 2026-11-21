@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with: { node-version: '22' }
       - name: tests — the kernel, and the page's numbers are the measured ones
-        run: node --test triage.test.mjs page-parity.test.mjs
+        run: node --test triage.test.mjs page-parity.test.mjs genome.test.mjs
       - name: the page holds the gated kernel byte for byte
         run: node tools/inline.mjs --check
       - name: witness — every mutant of the kernel must die
@@ -22,6 +22,10 @@ jobs:
           git clone --depth 1 --branch v0.6 https://github.com/sjgant80-hub/witness.git /tmp/witness
           node /tmp/witness/witness.mjs mutate triage.mjs --timeout 60000 --cap 100000 --test node --test triage.test.mjs > gate.out 2>&1 || true
           node -e "const b=require('fs').readFileSync('gate.out','utf8');const j=JSON.parse(b.slice(b.indexOf('{'),b.lastIndexOf('}')+1));if(j.clean!==true||j.killed!==j.total||!(j.total>0)){console.error('::error::witness not clean: '+j.killed+'/'+j.total);process.exit(1)}console.log('witness CLEAN '+j.killed+'/'+j.total)"
+      - name: witness — genome/cell.mjs (the birth check's judge, lane and health) must be CLEAN, no exemptions
+        run: |
+          node /tmp/witness/witness.mjs mutate genome/cell.mjs --timeout 60000 --cap 100000 --test node --test genome.test.mjs > genome.out 2>&1 || true
+          node -e "const b=require('fs').readFileSync('genome.out','utf8');const j=JSON.parse(b.slice(b.indexOf('{'),b.lastIndexOf('}')+1));if(j.clean!==true||j.killed!==j.total||!(j.total>0)||j.ignored.length!==0){console.error('::error::genome witness not clean: '+j.killed+'/'+j.total);process.exit(1)}console.log('genome witness CLEAN '+j.killed+'/'+j.total)"
       - name: re-derive every published result from the public data set
         run: |
           mkdir -p /tmp/ait && cd /tmp/ait

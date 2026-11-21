@@ -2,6 +2,8 @@
 
 **Live: https://sjgant80-hub.github.io/kar-alerttriage/**
 
+This repository is a cell of the [estate genome](https://sjgant80-hub.github.io/estate-genome/): its `seed.json` and `genome/` pass the four-trait birth check on every push.
+
 A flood of SIEM, EDR or IDS alerts in; a short ranked list of incidents out. It runs on your own machine, and no AI model judges anything. The same alerts always give the same list, and every incident carries the rules that formed it and the arithmetic of its score. Part of [Sovereign AI-Security](https://sjgant80-hub.github.io/sovereign-ai-security/). Built by Kar for [AI Native Solutions](https://www.ai-nativesolutions.com/).
 
 ```bash

@@ -1,0 +1,271 @@
+{
+  "genome": "1",
+  "name": "kar-alerttriage",
+  "kind": "repo",
+  "purpose": "Turns a flood of SIEM, EDR or IDS alerts into a short ranked list of incidents: repeats become bursts, routine noise is set aside, related bursts link, and every incident's score is shown as arithmetic, with no AI model judging.",
+  "lane": {
+    "id": "alert-triage",
+    "accepts": "a list of alerts (Wazuh, Suricata eve.json, Elastic/ECS or flat rows) with at least one it can place in time, and optional options {burstGap, incidentGap, backgroundShare, backgroundMinHours}",
+    "refuses": "anything that is not alerts to triage, such as a request to block an address or act on an incident"
+  },
+  "interface": {
+    "in": "{\"alerts\":[<alert>],\"options\":{...}} plus, to audit, a claimed ranking {\"ranking\":[{\"kind\":\"incident|background\",\"rules\":[\"<rule id>\"]}]} in rank order",
+    "out": "{ok:true, groups:[{kind, score, first, last, alerts, bursts, hosts, addresses, rules, marks}], stats}, or {ok:false, why}"
+  },
+  "judge": {
+    "what": "a claimed ranking is right when AlertTriage's own run on the same alerts and options gives the same groups, of the same kind and the same rules, in the same order",
+    "run": "node genome/judge.mjs",
+    "cases": {
+      "good": {
+        "alerts": [
+          {
+            "t": 0,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 3600,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 7200,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 10800,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 14400,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 18000,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 21600,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 25200,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 10810,
+            "rule": "rare",
+            "host": "web",
+            "level": 10
+          },
+          {
+            "t": 10820,
+            "rule": "rare2",
+            "host": "web",
+            "level": 10
+          }
+        ],
+        "options": {
+          "backgroundMinHours": 8
+        },
+        "ranking": [
+          {
+            "kind": "incident",
+            "rules": [
+              "rare",
+              "rare2"
+            ]
+          },
+          {
+            "kind": "background",
+            "rules": [
+              "noise"
+            ]
+          }
+        ]
+      },
+      "bad": {
+        "alerts": [
+          {
+            "t": 0,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 3600,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 7200,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 10800,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 14400,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 18000,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 21600,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 25200,
+            "rule": "noise",
+            "host": "mail",
+            "level": 3
+          },
+          {
+            "t": 10810,
+            "rule": "rare",
+            "host": "web",
+            "level": 10
+          },
+          {
+            "t": 10820,
+            "rule": "rare2",
+            "host": "web",
+            "level": 10
+          }
+        ],
+        "options": {
+          "backgroundMinHours": 8
+        },
+        "ranking": [
+          {
+            "kind": "incident",
+            "rules": [
+              "noise"
+            ]
+          },
+          {
+            "kind": "incident",
+            "rules": [
+              "rare",
+              "rare2"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "boundary": {
+    "run": "node genome/lane.mjs",
+    "inLane": {
+      "alerts": [
+        {
+          "t": 0,
+          "rule": "noise",
+          "host": "mail",
+          "level": 3
+        },
+        {
+          "t": 3600,
+          "rule": "noise",
+          "host": "mail",
+          "level": 3
+        },
+        {
+          "t": 7200,
+          "rule": "noise",
+          "host": "mail",
+          "level": 3
+        },
+        {
+          "t": 10800,
+          "rule": "noise",
+          "host": "mail",
+          "level": 3
+        },
+        {
+          "t": 14400,
+          "rule": "noise",
+          "host": "mail",
+          "level": 3
+        },
+        {
+          "t": 18000,
+          "rule": "noise",
+          "host": "mail",
+          "level": 3
+        },
+        {
+          "t": 21600,
+          "rule": "noise",
+          "host": "mail",
+          "level": 3
+        },
+        {
+          "t": 25200,
+          "rule": "noise",
+          "host": "mail",
+          "level": 3
+        },
+        {
+          "t": 10810,
+          "rule": "rare",
+          "host": "web",
+          "level": 10
+        },
+        {
+          "t": 10820,
+          "rule": "rare2",
+          "host": "web",
+          "level": 10
+        }
+      ],
+      "options": {
+        "backgroundMinHours": 8
+      }
+    },
+    "outOfLane": {
+      "request": "Block 6.6.6.6 at the firewall and close the incident"
+    },
+    "escalate": "kar"
+  },
+  "health": {
+    "run": "node genome/health.mjs"
+  },
+  "tombstone": {
+    "apply": "node genome/tombstone.mjs apply",
+    "restore": "node genome/tombstone.mjs restore"
+  },
+  "provenance": {
+    "repo": "sjgant80-hub/kar-alerttriage",
+    "by": "Kar, for Simon Gant",
+    "born": "2026-11-21"
+  }
+}
